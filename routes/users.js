@@ -11,10 +11,11 @@ router.get('/userlist', function(req, res) {
   });
 });
 
-router.get('/user:username', function(req, res) {
+router.get('/user', function(req, res) {
   var db = req.db;
   var collection = db.get('userlist');
-  var usern = req.params.username;
+  var usern = req.param('username');
+  console.log(usern);
   collection.find({ username: usern}, function(e, docs)
   {
     res.json(docs);
