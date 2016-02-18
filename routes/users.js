@@ -11,6 +11,16 @@ router.get('/userlist', function(req, res) {
   });
 });
 
+router.get('/user:username', function(req, res) {
+  var db = req.db;
+  var collection = db.get('userlist');
+  var usern = req.params.username;
+  collection.find({ username: usern}, function(e, docs)
+  {
+    res.json(docs);
+  });
+});
+
 router.post('/adduser', function(req, res) {
     console.log(req.body);
     var db = req.db;
